@@ -2,206 +2,247 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ExternalLink, Play, Star } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ArrowLeft, ExternalLink, Play, Star, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLazyLoading } from "@/hooks/useLazyLoading";
 
 const AllTechDomains = () => {
-  const techDomains = [
+  const allResources = [
+    // Technology Resources
     {
-      domain: "Frontend Development",
-      description: "Build stunning user interfaces and web experiences",
-      resources: [
-        {
-          title: "Complete React Developer Course",
-          platform: "YouTube",
-          instructor: "Traversy Media",
-          duration: "12 hours",
-          rating: "4.8",
-          link: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
-          tags: ["React", "JavaScript", "Frontend"]
-        },
-        {
-          title: "Modern JavaScript From Scratch",
-          platform: "Udemy",
-          instructor: "Brad Traversy",
-          duration: "21 hours",
-          rating: "4.7",
-          link: "https://www.udemy.com/course/modern-javascript-from-the-beginning/",
-          tags: ["JavaScript", "ES6", "DOM"]
-        }
-      ]
+      title: "Complete React Developer Course",
+      platform: "YouTube",
+      instructor: "Traversy Media",
+      duration: "12 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
+      tags: ["React", "JavaScript", "Frontend"],
+      category: "Technology",
+      trending: true
     },
     {
-      domain: "Backend Development",
-      description: "Create robust server-side applications and APIs",
-      resources: [
-        {
-          title: "Node.js Complete Guide",
-          platform: "YouTube",
-          instructor: "Academind",
-          duration: "15 hours",
-          rating: "4.8",
-          link: "https://www.youtube.com/watch?v=RLtyhwFtXQA",
-          tags: ["Node.js", "Express", "MongoDB"]
-        },
-        {
-          title: "Python Django Framework",
-          platform: "YouTube",
-          instructor: "Programming with Mosh",
-          duration: "10 hours",
-          rating: "4.9",
-          link: "https://www.youtube.com/watch?v=rHux0gMZ3Eg",
-          tags: ["Python", "Django", "REST API"]
-        }
-      ]
+      title: "Python for Everybody Specialization",
+      platform: "Coursera",
+      instructor: "University of Michigan",
+      duration: "8 months",
+      rating: "4.7",
+      link: "https://www.coursera.org/specializations/python",
+      tags: ["Python", "Programming", "Data Science"],
+      category: "Technology",
+      trending: true
     },
     {
-      domain: "Full Stack Development",
-      description: "Master both frontend and backend technologies",
-      resources: [
-        {
-          title: "MERN Stack Complete Course",
-          platform: "YouTube",
-          instructor: "freeCodeCamp",
-          duration: "14 hours",
-          rating: "4.8",
-          link: "https://www.youtube.com/watch?v=7CqJlxBYj-M",
-          tags: ["React", "Node.js", "MongoDB", "Express"]
-        },
-        {
-          title: "Full Stack Web Development Bootcamp",
-          platform: "Udemy",
-          instructor: "Angela Yu",
-          duration: "65 hours",
-          rating: "4.7",
-          link: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
-          tags: ["HTML", "CSS", "JavaScript", "Node.js"]
-        }
-      ]
+      title: "Machine Learning Course",
+      platform: "YouTube",
+      instructor: "freeCodeCamp",
+      duration: "10 hours",
+      rating: "4.9",
+      link: "https://www.youtube.com/watch?v=NWONeJKn6kc",
+      tags: ["Machine Learning", "AI", "Python"],
+      category: "Technology",
+      trending: true
     },
     {
-      domain: "Mobile App Development",
-      description: "Build native and cross-platform mobile applications",
-      resources: [
-        {
-          title: "React Native Complete Guide",
-          platform: "YouTube",
-          instructor: "Academind",
-          duration: "18 hours",
-          rating: "4.7",
-          link: "https://www.youtube.com/watch?v=qSRrxpdMpVc",
-          tags: ["React Native", "Mobile", "iOS", "Android"]
-        },
-        {
-          title: "Flutter Development Course",
-          platform: "YouTube",
-          instructor: "The Net Ninja",
-          duration: "12 hours",
-          rating: "4.8",
-          link: "https://www.youtube.com/watch?v=1ukSR1GRtMU",
-          tags: ["Flutter", "Dart", "Mobile", "Cross-platform"]
-        }
-      ]
+      title: "AWS Certified Solutions Architect",
+      platform: "Udemy",
+      instructor: "Stephane Maarek",
+      duration: "27 hours",
+      rating: "4.6",
+      link: "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
+      tags: ["AWS", "Cloud", "DevOps"],
+      category: "Technology",
+      trending: true
     },
     {
-      domain: "Data Science & Analytics",
-      description: "Extract insights from data and build predictive models",
-      resources: [
-        {
-          title: "Python for Data Science",
-          platform: "Coursera",
-          instructor: "IBM",
-          duration: "6 months",
-          rating: "4.6",
-          link: "https://www.coursera.org/professional-certificates/ibm-data-science",
-          tags: ["Python", "Pandas", "NumPy", "Matplotlib"]
-        },
-        {
-          title: "Data Analysis with R",
-          platform: "YouTube",
-          instructor: "MarinStatsLectures",
-          duration: "8 hours",
-          rating: "4.7",
-          link: "https://www.youtube.com/watch?v=_V8eKsto3Ug",
-          tags: ["R", "Statistics", "Data Visualization"]
-        }
-      ]
+      title: "Docker and Kubernetes Complete Guide",
+      platform: "YouTube",
+      instructor: "TechWorld with Nana",
+      duration: "6 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=3c-iBn73dDE",
+      tags: ["Docker", "Kubernetes", "DevOps"],
+      category: "Technology",
+      trending: false
     },
     {
-      domain: "Machine Learning & AI",
-      description: "Build intelligent systems and predictive models",
-      resources: [
-        {
-          title: "Machine Learning Course",
-          platform: "YouTube",
-          instructor: "freeCodeCamp",
-          duration: "10 hours",
-          rating: "4.9",
-          link: "https://www.youtube.com/watch?v=NWONeJKn6kc",
-          tags: ["Machine Learning", "AI", "Python", "TensorFlow"]
-        },
-        {
-          title: "Deep Learning Specialization",
-          platform: "Coursera",
-          instructor: "Andrew Ng",
-          duration: "5 months",
-          rating: "4.9",
-          link: "https://www.coursera.org/specializations/deep-learning",
-          tags: ["Deep Learning", "Neural Networks", "TensorFlow"]
-        }
-      ]
+      title: "Complete Web Development Bootcamp",
+      platform: "Udemy",
+      instructor: "Dr. Angela Yu",
+      duration: "65 hours",
+      rating: "4.7",
+      link: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
+      tags: ["Web Development", "Full Stack", "JavaScript"],
+      category: "Technology",
+      trending: false
+    },
+    // Design Resources
+    {
+      title: "UI/UX Design Complete Course",
+      platform: "YouTube",
+      instructor: "DesignCourse",
+      duration: "8 hours",
+      rating: "4.9",
+      link: "https://www.youtube.com/watch?v=c9Wg6Cb_YlU",
+      tags: ["UI/UX", "Figma", "Design Thinking"],
+      category: "Design",
+      trending: true
     },
     {
-      domain: "Cloud Computing & DevOps",
-      description: "Deploy and manage applications in the cloud",
-      resources: [
-        {
-          title: "AWS Certified Solutions Architect",
-          platform: "Udemy",
-          instructor: "Stephane Maarek",
-          duration: "27 hours",
-          rating: "4.6",
-          link: "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
-          tags: ["AWS", "Cloud", "DevOps", "Architecture"]
-        },
-        {
-          title: "Docker and Kubernetes Guide",
-          platform: "YouTube",
-          instructor: "TechWorld with Nana",
-          duration: "6 hours",
-          rating: "4.8",
-          link: "https://www.youtube.com/watch?v=3c-iBn73dDE",
-          tags: ["Docker", "Kubernetes", "DevOps", "Containers"]
-        }
-      ]
+      title: "Google UX Design Professional Certificate",
+      platform: "Coursera",
+      instructor: "Google",
+      duration: "6 months",
+      rating: "4.8",
+      link: "https://www.coursera.org/professional-certificates/google-ux-design",
+      tags: ["UX Research", "Prototyping", "User Testing"],
+      category: "Design",
+      trending: true
     },
     {
-      domain: "Cybersecurity",
-      description: "Protect systems and data from digital threats",
-      resources: [
-        {
-          title: "Ethical Hacking Complete Course",
-          platform: "YouTube",
-          instructor: "freeCodeCamp",
-          duration: "15 hours",
-          rating: "4.7",
-          link: "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-          tags: ["Ethical Hacking", "Penetration Testing", "Security"]
-        },
-        {
-          title: "CompTIA Security+ Course",
-          platform: "YouTube",
-          instructor: "Professor Messer",
-          duration: "20 hours",
-          rating: "4.8",
-          link: "https://www.youtube.com/watch?v=9NE33fpQuw8",
-          tags: ["CompTIA", "Security", "Certification"]
-        }
-      ]
+      title: "Adobe Creative Suite Masterclass",
+      platform: "Udemy",
+      instructor: "Lindsay Marsh",
+      duration: "45 hours",
+      rating: "4.6",
+      link: "https://www.udemy.com/course/adobe-cc-masterclass-photoshop-illustrator-indesign-and-more/",
+      tags: ["Photoshop", "Illustrator", "InDesign"],
+      category: "Design",
+      trending: false
+    },
+    {
+      title: "Figma UI Design Tutorial",
+      platform: "YouTube",
+      instructor: "Flux",
+      duration: "4 hours",
+      rating: "4.7",
+      link: "https://www.youtube.com/watch?v=FTFaQWZBqQ8",
+      tags: ["Figma", "UI Design", "Prototyping"],
+      category: "Design",
+      trending: true
+    },
+    // Business Resources
+    {
+      title: "Digital Marketing Complete Course",
+      platform: "YouTube",
+      instructor: "Neil Patel",
+      duration: "10 hours",
+      rating: "4.7",
+      link: "https://www.youtube.com/watch?v=bixR-KIJKYM",
+      tags: ["Digital Marketing", "SEO", "Social Media"],
+      category: "Business",
+      trending: true
+    },
+    {
+      title: "Google Data Analytics Professional Certificate",
+      platform: "Coursera",
+      instructor: "Google",
+      duration: "6 months",
+      rating: "4.8",
+      link: "https://www.coursera.org/professional-certificates/google-data-analytics",
+      tags: ["Data Analysis", "SQL", "Tableau"],
+      category: "Business",
+      trending: true
+    },
+    {
+      title: "Project Management Professional (PMP)",
+      platform: "Udemy",
+      instructor: "Joseph Phillips",
+      duration: "35 hours",
+      rating: "4.6",
+      link: "https://www.udemy.com/course/pmp-certification-exam-prep-course-pmbok-6th-edition/",
+      tags: ["Project Management", "PMP", "Agile"],
+      category: "Business",
+      trending: false
+    },
+    // Creative Resources
+    {
+      title: "Content Writing Masterclass",
+      platform: "YouTube",
+      instructor: "Alex Cattoni",
+      duration: "6 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=8S7IeEEj-ks",
+      tags: ["Content Writing", "Copywriting", "Marketing"],
+      category: "Creative",
+      trending: true
+    },
+    {
+      title: "Video Editing with Adobe Premiere Pro",
+      platform: "Udemy",
+      instructor: "Louay Zambarakji",
+      duration: "23 hours",
+      rating: "4.7",
+      link: "https://www.udemy.com/course/adobe-premiere-pro-video-editing/",
+      tags: ["Video Editing", "Premiere Pro", "Post Production"],
+      category: "Creative",
+      trending: true
+    },
+    {
+      title: "Photography Fundamentals",
+      platform: "YouTube",
+      instructor: "Mango Street",
+      duration: "8 hours",
+      rating: "4.6",
+      link: "https://www.youtube.com/watch?v=V7z7BAZdt2M",
+      tags: ["Photography", "Composition", "Lighting"],
+      category: "Creative",
+      trending: false
+    },
+    // Additional resources to demonstrate lazy loading
+    {
+      title: "Advanced JavaScript Concepts",
+      platform: "YouTube",
+      instructor: "Akshay Saini",
+      duration: "15 hours",
+      rating: "4.9",
+      link: "https://www.youtube.com/watch?v=8aGhZQkoFbQ",
+      tags: ["JavaScript", "Advanced", "Concepts"],
+      category: "Technology",
+      trending: true
+    },
+    {
+      title: "System Design Primer",
+      platform: "YouTube",
+      instructor: "Gaurav Sen",
+      duration: "20 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=quLrc3PbuIw",
+      tags: ["System Design", "Architecture", "Scalability"],
+      category: "Technology",
+      trending: true
+    },
+    {
+      title: "Cybersecurity Complete Course",
+      platform: "Udemy",
+      instructor: "Nathan House",
+      duration: "30 hours",
+      rating: "4.5",
+      link: "https://www.udemy.com/course/complete-cyber-security-course-network-security-course/",
+      tags: ["Cybersecurity", "Network Security", "Ethical Hacking"],
+      category: "Technology",
+      trending: false
+    },
+    {
+      title: "Brand Identity Design Course",
+      platform: "Skillshare",
+      instructor: "Satori Graphics",
+      duration: "3 hours",
+      rating: "4.5",
+      link: "https://www.skillshare.com/classes/Brand-Identity-Design-Complete-Course/1234567890",
+      tags: ["Branding", "Logo Design", "Visual Identity"],
+      category: "Design",
+      trending: false
     }
   ];
+
+  const { displayedItems, loading, hasMore, scrollCount } = useLazyLoading({
+    initialItems: allResources,
+    itemsPerLoad: 6,
+    maxScrolls: 8
+  });
 
   const getPlatformColor = (platform: string) => {
     switch (platform) {
@@ -211,6 +252,23 @@ const AllTechDomains = () => {
         return "bg-purple-100 text-purple-800";
       case "Coursera":
         return "bg-blue-100 text-blue-800";
+      case "Skillshare":
+        return "bg-green-100 text-green-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "Technology":
+        return "bg-blue-100 text-blue-800";
+      case "Design":
+        return "bg-purple-100 text-purple-800";
+      case "Business":
+        return "bg-green-100 text-green-800";
+      case "Creative":
+        return "bg-orange-100 text-orange-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -232,67 +290,79 @@ const AllTechDomains = () => {
 
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            All Tech Domains & Resources
+            All Skills & Resources
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive collection of technology learning resources across all major domains to boost your career
+            Comprehensive collection of curated learning resources across all domains
           </p>
         </div>
 
-        <div className="space-y-12">
-          {techDomains.map((domain, domainIndex) => (
-            <div key={domainIndex}>
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">{domain.domain}</h2>
-                <p className="text-gray-600">{domain.description}</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {domain.resources.map((resource, resourceIndex) => (
-                  <Card key={resourceIndex} className="hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader>
-                      <div className="flex items-start justify-between mb-2">
-                        <Badge className={getPlatformColor(resource.platform)} variant="secondary">
-                          {resource.platform}
-                        </Badge>
-                      </div>
-                      <CardTitle className="text-lg leading-tight">{resource.title}</CardTitle>
-                      <CardDescription>
-                        By {resource.instructor} • {resource.duration}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center mb-4">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="ml-1 text-sm font-medium">{resource.rating}</span>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {resource.tags.map((tag, tagIndex) => (
-                          <Badge key={tagIndex} variant="outline" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayedItems.map((resource, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex flex-wrap gap-2">
+                    <Badge className={getPlatformColor(resource.platform)} variant="secondary">
+                      {resource.platform}
+                    </Badge>
+                    <Badge className={getCategoryColor(resource.category)} variant="secondary">
+                      {resource.category}
+                    </Badge>
+                  </div>
+                  {resource.trending && (
+                    <Badge className="bg-orange-100 text-orange-800" variant="secondary">
+                      🔥 Trending
+                    </Badge>
+                  )}
+                </div>
+                <CardTitle className="text-lg leading-tight">{resource.title}</CardTitle>
+                <CardDescription>
+                  By {resource.instructor} • {resource.duration}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center mb-4">
+                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                  <span className="ml-1 text-sm font-medium">{resource.rating}</span>
+                </div>
+                
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {resource.tags.map((tag, tagIndex) => (
+                    <Badge key={tagIndex} variant="outline" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
 
-                      <Button 
-                        asChild 
-                        className="w-full"
-                        onClick={() => window.open(resource.link, '_blank')}
-                      >
-                        <a href={resource.link} target="_blank" rel="noopener noreferrer">
-                          <Play className="h-4 w-4 mr-2" />
-                          Start Learning
-                          <ExternalLink className="h-4 w-4 ml-2" />
-                        </a>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+                <Button 
+                  asChild 
+                  className="w-full"
+                  onClick={() => window.open(resource.link, '_blank')}
+                >
+                  <a href={resource.link} target="_blank" rel="noopener noreferrer">
+                    <Play className="h-4 w-4 mr-2" />
+                    Start Learning
+                    <ExternalLink className="h-4 w-4 ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
+
+        {loading && (
+          <div className="flex justify-center items-center py-8">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <span className="ml-2 text-gray-600">Loading more resources...</span>
+          </div>
+        )}
+
+        {!hasMore && scrollCount >= 8 && (
+          <div className="text-center py-8">
+            <p className="text-gray-600">You've reached the end! That's all the resources we have for now.</p>
+          </div>
+        )}
       </div>
 
       <Footer />
