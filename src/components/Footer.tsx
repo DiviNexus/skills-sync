@@ -11,8 +11,8 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4">SkillSync Sarthi</h3>
             <p className="text-gray-300 mb-4">
-              Empowering learners worldwide with personalized skill development 
-              and expert mentorship.
+              Empowering job seekers worldwide with curated learning resources 
+              and personalized skill roadmaps to bridge employment gaps.
             </p>
             <div className="flex space-x-4">
               <Facebook className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
@@ -28,7 +28,7 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-300">
               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Learning Paths</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Success Stories</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
             </ul>
@@ -42,7 +42,7 @@ const Footer = () => {
               <li><a href="#" className="hover:text-white transition-colors">Design</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Business</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Creative</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Language</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Data Science</a></li>
             </ul>
           </div>
 

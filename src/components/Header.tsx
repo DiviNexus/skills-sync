@@ -24,10 +24,10 @@ const Header = () => {
               Skills
             </a>
             <a href="#" className="text-gray-700 hover:text-primary transition-colors">
-              Mentors
+              Roadmaps
             </a>
             <a href="#" className="text-gray-700 hover:text-primary transition-colors">
-              Community
+              Resources
             </a>
             <a href="#" className="text-gray-700 hover:text-primary transition-colors">
               About
@@ -72,10 +72,10 @@ const Header = () => {
                 Skills
               </a>
               <a href="#" className="text-gray-700 hover:text-primary transition-colors">
-                Mentors
+                Roadmaps
               </a>
               <a href="#" className="text-gray-700 hover:text-primary transition-colors">
-                Community
+                Resources
               </a>
               <a href="#" className="text-gray-700 hover:text-primary transition-colors">
                 About

@@ -1,38 +1,38 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Users, Target, Zap, BookOpen, Trophy } from "lucide-react";
+import { Brain, Globe, Target, Zap, BookOpen, Trophy } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
       icon: Brain,
-      title: "AI-Powered Matching",
-      description: "Our intelligent algorithm matches you with the perfect mentors and learning paths based on your goals and current skill level."
+      title: "AI-Powered Roadmaps",
+      description: "Our intelligent system creates personalized learning paths based on your career goals and current skill level to bridge employment gaps."
     },
     {
-      icon: Users,
-      title: "Expert Mentors",
-      description: "Learn from industry professionals who have real-world experience and are passionate about sharing their knowledge."
+      icon: Globe,
+      title: "Curated Web Resources",
+      description: "Access the best learning materials from across the internet, carefully selected and organized for maximum learning efficiency."
     },
     {
       icon: Target,
-      title: "Personalized Learning",
-      description: "Get customized learning plans that adapt to your pace, preferences, and career objectives."
+      title: "Job-Focused Learning",
+      description: "Every skill and resource is chosen based on current market demands and what employers are actively seeking."
     },
     {
       icon: Zap,
-      title: "Fast-Track Progress",
-      description: "Accelerate your learning with structured programs designed to help you achieve results quickly."
+      title: "Fast-Track to Employment",
+      description: "Accelerate your job readiness with structured programs designed to help you gain employable skills quickly."
     },
     {
       icon: BookOpen,
-      title: "Comprehensive Resources",
-      description: "Access a vast library of courses, tutorials, and practical exercises across multiple skill domains."
+      title: "Comprehensive Coverage",
+      description: "From beginner to advanced levels, access tutorials, courses, and practical exercises across multiple skill domains."
     },
     {
       icon: Trophy,
-      title: "Skill Certification",
-      description: "Earn recognized certificates and badges to showcase your achievements to potential employers."
+      title: "Progress Tracking",
+      description: "Monitor your learning journey and showcase your skill development to potential employers with detailed progress reports."
     }
   ];
 
@@ -44,8 +44,8 @@ const Features = () => {
             Why Choose SkillSync Sarthi?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            We combine cutting-edge technology with human expertise to create 
-            the most effective learning experience possible.
+            We combine AI-powered learning paths with the best resources from across the web 
+            to help you overcome skill gaps and land your dream job.
           </p>
         </div>
 
