@@ -2,13 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ExternalLink, Play, Star } from "lucide-react";
+import { ArrowLeft, ExternalLink, Play, Star, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLazyLoading } from "@/hooks/useLazyLoading";
 
 const DesignSkills = () => {
-  const resources = [
+  const allResources = [
     {
       title: "UI/UX Design Complete Course",
       platform: "YouTube",
@@ -68,8 +69,154 @@ const DesignSkills = () => {
       link: "https://www.youtube.com/watch?v=B-ytMSuwbf8",
       tags: ["Web Design", "CSS", "Responsive Design"],
       trending: true
+    },
+    {
+      title: "Complete Photoshop Course",
+      platform: "YouTube",
+      instructor: "Photoshop Training Channel",
+      duration: "12 hours",
+      rating: "4.7",
+      link: "https://www.youtube.com/watch?v=IyR_uYsRdPs",
+      tags: ["Photoshop", "Photo Editing", "Digital Art"],
+      trending: false
+    },
+    {
+      title: "Illustrator Complete Course",
+      platform: "Udemy",
+      instructor: "Daniel Walter Scott",
+      duration: "22 hours",
+      rating: "4.8",
+      link: "https://www.udemy.com/course/illustrator-cc-masterclass/",
+      tags: ["Illustrator", "Vector Design", "Logo Design"],
+      trending: true
+    },
+    {
+      title: "Mobile App Design in Figma",
+      platform: "YouTube",
+      instructor: "CharliMarieTV",
+      duration: "5 hours",
+      rating: "4.6",
+      link: "https://www.youtube.com/watch?v=PeGfX7W1mJk",
+      tags: ["Mobile Design", "Figma", "App Design"],
+      trending: true
+    },
+    {
+      title: "Typography Fundamentals",
+      platform: "Skillshare",
+      instructor: "Ellen Lupton",
+      duration: "2 hours",
+      rating: "4.7",
+      link: "https://www.skillshare.com/classes/Typography-That-Works-Typographic-Composition-and-Fonts/1234567891",
+      tags: ["Typography", "Font Design", "Layout"],
+      trending: false
+    },
+    {
+      title: "Color Theory for Designers",
+      platform: "YouTube",
+      instructor: "Art Heroes",
+      duration: "3 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=Qj1FK8n7WgY",
+      tags: ["Color Theory", "Design Principles", "Visual Design"],
+      trending: false
+    },
+    {
+      title: "Sketch App Complete Course",
+      platform: "Udemy",
+      instructor: "Daniel Walter Scott",
+      duration: "15 hours",
+      rating: "4.5",
+      link: "https://www.udemy.com/course/sketch-app-masterclass/",
+      tags: ["Sketch", "UI Design", "Prototyping"],
+      trending: false
+    },
+    {
+      title: "InDesign Complete Course",
+      platform: "YouTube",
+      instructor: "Terry White",
+      duration: "10 hours",
+      rating: "4.6",
+      link: "https://www.youtube.com/watch?v=8CsM03hWMhA",
+      tags: ["InDesign", "Layout Design", "Print Design"],
+      trending: false
+    },
+    {
+      title: "User Research Methods",
+      platform: "Coursera",
+      instructor: "University of Michigan",
+      duration: "4 weeks",
+      rating: "4.7",
+      link: "https://www.coursera.org/learn/user-research",
+      tags: ["User Research", "UX Design", "Usability Testing"],
+      trending: true
+    },
+    {
+      title: "Design Systems Complete Guide",
+      platform: "YouTube",
+      instructor: "Design Course",
+      duration: "7 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=wc5krSHtFTs",
+      tags: ["Design Systems", "Component Libraries", "UI Design"],
+      trending: true
+    },
+    {
+      title: "Packaging Design Masterclass",
+      platform: "Skillshare",
+      instructor: "The Futur",
+      duration: "4 hours",
+      rating: "4.6",
+      link: "https://www.skillshare.com/classes/Packaging-Design-Complete-Course/1234567892",
+      tags: ["Packaging Design", "Product Design", "Brand Design"],
+      trending: false
+    },
+    {
+      title: "3D Design with Blender",
+      platform: "YouTube",
+      instructor: "Blender Guru",
+      duration: "20 hours",
+      rating: "4.9",
+      link: "https://www.youtube.com/watch?v=TPrnSACiTJ4",
+      tags: ["3D Design", "Blender", "3D Modeling"],
+      trending: true
+    },
+    {
+      title: "Motion Graphics with After Effects",
+      platform: "Udemy",
+      instructor: "Phil Ebiner",
+      duration: "18 hours",
+      rating: "4.7",
+      link: "https://www.udemy.com/course/after-effects-cc-masterclass/",
+      tags: ["Motion Graphics", "After Effects", "Animation"],
+      trending: true
+    },
+    {
+      title: "Graphic Design Theory",
+      platform: "Coursera",
+      instructor: "CalArts",
+      duration: "4 weeks",
+      rating: "4.5",
+      link: "https://www.coursera.org/learn/graphic-design",
+      tags: ["Design Theory", "Visual Communication", "Graphic Design"],
+      trending: false
+    },
+    {
+      title: "Portfolio Design for Designers",
+      platform: "YouTube",
+      instructor: "Flux",
+      duration: "3 hours",
+      rating: "4.8",
+      link: "https://www.youtube.com/watch?v=u-jjfcVhfh8",
+      tags: ["Portfolio", "Career", "Design Presentation"],
+      trending: true
     }
   ];
+
+  const { displayedItems, loading, hasMore } = useLazyLoading({
+    initialItems: allResources,
+    itemsPerLoad: 3,
+    maxScrolls: 7
+  });
 
   const getPlatformColor = (platform: string) => {
     switch (platform) {
@@ -110,7 +257,7 @@ const DesignSkills = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {resources.map((resource, index) => (
+          {displayedItems.map((resource, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
@@ -157,6 +304,22 @@ const DesignSkills = () => {
             </Card>
           ))}
         </div>
+
+        {loading && (
+          <div className="flex justify-center items-center py-8">
+            <Loader2 className="h-8 w-8 animate-spin text-primary mr-2" />
+            <span className="text-lg">Loading more resources...</span>
+          </div>
+        )}
+
+        {!hasMore && displayedItems.length > 0 && (
+          <div className="text-center py-8">
+            <p className="text-gray-600">You've reached the end! 🎉</p>
+            <p className="text-sm text-gray-500 mt-2">
+              Showing {displayedItems.length} of {allResources.length} resources
+            </p>
+          </div>
+        )}
       </div>
 
       <Footer />

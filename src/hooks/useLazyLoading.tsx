@@ -32,7 +32,7 @@ export const useLazyLoading = ({
       const newLength = currentLength + nextItems.length;
       setHasMore(newLength < initialItems.length && scrollCount + 1 < maxScrolls);
       setLoading(false);
-    }, 500); // Simulate loading delay
+    }, 800); // Simulate loading delay
   }, [displayedItems.length, hasMore, loading, initialItems, itemsPerLoad, scrollCount, maxScrolls]);
 
   useEffect(() => {
@@ -46,6 +46,14 @@ export const useLazyLoading = ({
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loadMore]);
+
+  // Reset when initialItems change
+  useEffect(() => {
+    setDisplayedItems(initialItems.slice(0, itemsPerLoad));
+    setHasMore(initialItems.length > itemsPerLoad);
+    setScrollCount(0);
+    setLoading(false);
+  }, [initialItems, itemsPerLoad]);
 
   return {
     displayedItems,
