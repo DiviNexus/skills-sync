@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
+  const scrollToSkills = () => {
+    const skillsSection = document.getElementById('skills-section');
+    if (skillsSection) {
+      skillsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +25,7 @@ const Hero = () => {
             Master trending skills and overcome employment barriers with our comprehensive skill development platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="text-lg px-8 py-3">
+            <Button size="lg" className="text-lg px-8 py-3" onClick={scrollToSkills}>
               Start Your Journey Today
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

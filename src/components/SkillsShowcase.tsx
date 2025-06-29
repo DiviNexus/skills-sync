@@ -34,7 +34,7 @@ const SkillsShowcase = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-50">
+    <section id="skills-section" className="py-16 lg:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -73,9 +73,11 @@ const SkillsShowcase = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="text-lg px-8 py-3">
-            Browse All Skills
-            <ArrowRight className="ml-2 h-5 w-5" />
+          <Button asChild size="lg" className="text-lg px-8 py-3">
+            <Link to="/all-tech-domains">
+              Browse All Skills
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>

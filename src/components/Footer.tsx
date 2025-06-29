@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">SkillSync Sarthi</h3>
+            <h3 className="text-2xl font-bold mb-4">SkillSync</h3>
             <p className="text-gray-300 mb-4">
               Empowering job seekers worldwide with curated learning resources 
               and personalized skill roadmaps to bridge employment gaps.
@@ -52,7 +52,7 @@ const Footer = () => {
             <div className="space-y-3 text-gray-300">
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-3" />
-                <span>hello@skillsyncsarthi.com</span>
+                <span>hello@skillsync.com</span>
               </div>
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-3" />
@@ -70,7 +70,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 SkillSync Sarthi. All rights reserved.
+            © 2024 SkillSync. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">

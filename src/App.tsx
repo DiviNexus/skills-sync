@@ -9,6 +9,7 @@ import TechnologySkills from "./pages/TechnologySkills";
 import DesignSkills from "./pages/DesignSkills";
 import BusinessSkills from "./pages/BusinessSkills";
 import CreativeSkills from "./pages/CreativeSkills";
+import AllTechDomains from "./pages/AllTechDomains";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/design-skills" element={<DesignSkills />} />
           <Route path="/business-skills" element={<BusinessSkills />} />
           <Route path="/creative-skills" element={<CreativeSkills />} />
+          <Route path="/all-tech-domains" element={<AllTechDomains />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
