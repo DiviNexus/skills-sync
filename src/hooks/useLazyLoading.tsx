@@ -10,7 +10,7 @@ interface UseLazyLoadingProps {
 export const useLazyLoading = ({ 
   initialItems, 
   itemsPerLoad, 
-  maxScrolls = 8 
+  maxScrolls = 20 
 }: UseLazyLoadingProps) => {
   const [displayedItems, setDisplayedItems] = useState(initialItems.slice(0, itemsPerLoad));
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ export const useLazyLoading = ({
       const newLength = currentLength + nextItems.length;
       setHasMore(newLength < initialItems.length && scrollCount + 1 < maxScrolls);
       setLoading(false);
-    }, 800); // Simulate loading delay
+    }, 1000); // Slightly longer delay for better UX
   }, [displayedItems.length, hasMore, loading, initialItems, itemsPerLoad, scrollCount, maxScrolls]);
 
   useEffect(() => {

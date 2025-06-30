@@ -2,286 +2,66 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { ArrowLeft, ExternalLink, Play, Star, Loader2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, Play, Star, Loader2, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLazyLoading } from "@/hooks/useLazyLoading";
+import { allResources } from "@/data/resources";
 
 const AllTechDomains = () => {
-  const allResources = [
-    // Technology Resources
-    {
-      title: "Complete React Developer Course",
-      platform: "YouTube",
-      instructor: "Traversy Media",
-      duration: "12 hours",
-      rating: "4.8",
-      link: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
-      tags: ["React", "JavaScript", "Frontend"],
-      category: "Technology",
-      trending: true
-    },
-    {
-      title: "Python for Everybody Specialization",
-      platform: "Coursera",
-      instructor: "University of Michigan",
-      duration: "8 months",
-      rating: "4.7",
-      link: "https://www.coursera.org/specializations/python",
-      tags: ["Python", "Programming", "Data Science"],
-      category: "Technology",
-      trending: true
-    },
-    {
-      title: "Machine Learning Course",
-      platform: "YouTube",
-      instructor: "freeCodeCamp",
-      duration: "10 hours",
-      rating: "4.9",
-      link: "https://www.youtube.com/watch?v=NWONeJKn6kc",
-      tags: ["Machine Learning", "AI", "Python"],
-      category: "Technology",
-      trending: true
-    },
-    {
-      title: "AWS Certified Solutions Architect",
-      platform: "Udemy",
-      instructor: "Stephane Maarek",
-      duration: "27 hours",
-      rating: "4.6",
-      link: "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
-      tags: ["AWS", "Cloud", "DevOps"],
-      category: "Technology",
-      trending: true
-    },
-    {
-      title: "Docker and Kubernetes Complete Guide",
-      platform: "YouTube",
-      instructor: "TechWorld with Nana",
-      duration: "6 hours",
-      rating: "4.8",
-      link: "https://www.youtube.com/watch?v=3c-iBn73dDE",
-      tags: ["Docker", "Kubernetes", "DevOps"],
-      category: "Technology",
-      trending: false
-    },
-    {
-      title: "Complete Web Development Bootcamp",
-      platform: "Udemy",
-      instructor: "Dr. Angela Yu",
-      duration: "65 hours",
-      rating: "4.7",
-      link: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
-      tags: ["Web Development", "Full Stack", "JavaScript"],
-      category: "Technology",
-      trending: false
-    },
-    // Design Resources
-    {
-      title: "UI/UX Design Complete Course",
-      platform: "YouTube",
-      instructor: "DesignCourse",
-      duration: "8 hours",
-      rating: "4.9",
-      link: "https://www.youtube.com/watch?v=c9Wg6Cb_YlU",
-      tags: ["UI/UX", "Figma", "Design Thinking"],
-      category: "Design",
-      trending: true
-    },
-    {
-      title: "Google UX Design Professional Certificate",
-      platform: "Coursera",
-      instructor: "Google",
-      duration: "6 months",
-      rating: "4.8",
-      link: "https://www.coursera.org/professional-certificates/google-ux-design",
-      tags: ["UX Research", "Prototyping", "User Testing"],
-      category: "Design",
-      trending: true
-    },
-    {
-      title: "Adobe Creative Suite Masterclass",
-      platform: "Udemy",
-      instructor: "Lindsay Marsh",
-      duration: "45 hours",
-      rating: "4.6",
-      link: "https://www.udemy.com/course/adobe-cc-masterclass-photoshop-illustrator-indesign-and-more/",
-      tags: ["Photoshop", "Illustrator", "InDesign"],
-      category: "Design",
-      trending: false
-    },
-    {
-      title: "Figma UI Design Tutorial",
-      platform: "YouTube",
-      instructor: "Flux",
-      duration: "4 hours",
-      rating: "4.7",
-      link: "https://www.youtube.com/watch?v=FTFaQWZBqQ8",
-      tags: ["Figma", "UI Design", "Prototyping"],
-      category: "Design",
-      trending: true
-    },
-    // Business Resources
-    {
-      title: "Digital Marketing Complete Course",
-      platform: "YouTube",
-      instructor: "Neil Patel",
-      duration: "10 hours",
-      rating: "4.7",
-      link: "https://www.youtube.com/watch?v=bixR-KIJKYM",
-      tags: ["Digital Marketing", "SEO", "Social Media"],
-      category: "Business",
-      trending: true
-    },
-    {
-      title: "Google Data Analytics Professional Certificate",
-      platform: "Coursera",
-      instructor: "Google",
-      duration: "6 months",
-      rating: "4.8",
-      link: "https://www.coursera.org/professional-certificates/google-data-analytics",
-      tags: ["Data Analysis", "SQL", "Tableau"],
-      category: "Business",
-      trending: true
-    },
-    {
-      title: "Project Management Professional (PMP)",
-      platform: "Udemy",
-      instructor: "Joseph Phillips",
-      duration: "35 hours",
-      rating: "4.6",
-      link: "https://www.udemy.com/course/pmp-certification-exam-prep-course-pmbok-6th-edition/",
-      tags: ["Project Management", "PMP", "Agile"],
-      category: "Business",
-      trending: false
-    },
-    // Creative Resources
-    {
-      title: "Content Writing Masterclass",
-      platform: "YouTube",
-      instructor: "Alex Cattoni",
-      duration: "6 hours",
-      rating: "4.8",
-      link: "https://www.youtube.com/watch?v=8S7IeEEj-ks",
-      tags: ["Content Writing", "Copywriting", "Marketing"],
-      category: "Creative",
-      trending: true
-    },
-    {
-      title: "Video Editing with Adobe Premiere Pro",
-      platform: "Udemy",
-      instructor: "Louay Zambarakji",
-      duration: "23 hours",
-      rating: "4.7",
-      link: "https://www.udemy.com/course/adobe-premiere-pro-video-editing/",
-      tags: ["Video Editing", "Premiere Pro", "Post Production"],
-      category: "Creative",
-      trending: true
-    },
-    {
-      title: "Photography Fundamentals",
-      platform: "YouTube",
-      instructor: "Mango Street",
-      duration: "8 hours",
-      rating: "4.6",
-      link: "https://www.youtube.com/watch?v=V7z7BAZdt2M",
-      tags: ["Photography", "Composition", "Lighting"],
-      category: "Creative",
-      trending: false
-    },
-    // Additional resources to demonstrate lazy loading
-    {
-      title: "Advanced JavaScript Concepts",
-      platform: "YouTube",
-      instructor: "Akshay Saini",
-      duration: "15 hours",
-      rating: "4.9",
-      link: "https://www.youtube.com/watch?v=8aGhZQkoFbQ",
-      tags: ["JavaScript", "Advanced", "Concepts"],
-      category: "Technology",
-      trending: true
-    },
-    {
-      title: "System Design Primer",
-      platform: "YouTube",
-      instructor: "Gaurav Sen",
-      duration: "20 hours",
-      rating: "4.8",
-      link: "https://www.youtube.com/watch?v=quLrc3PbuIw",
-      tags: ["System Design", "Architecture", "Scalability"],
-      category: "Technology",
-      trending: true
-    },
-    {
-      title: "Cybersecurity Complete Course",
-      platform: "Udemy",
-      instructor: "Nathan House",
-      duration: "30 hours",
-      rating: "4.5",
-      link: "https://www.udemy.com/course/complete-cyber-security-course-network-security-course/",
-      tags: ["Cybersecurity", "Network Security", "Ethical Hacking"],
-      category: "Technology",
-      trending: false
-    },
-    {
-      title: "Brand Identity Design Course",
-      platform: "Skillshare",
-      instructor: "Satori Graphics",
-      duration: "3 hours",
-      rating: "4.5",
-      link: "https://www.skillshare.com/classes/Brand-Identity-Design-Complete-Course/1234567890",
-      tags: ["Branding", "Logo Design", "Visual Identity"],
-      category: "Design",
-      trending: false
-    }
-  ];
-
   const { displayedItems, loading, hasMore, scrollCount } = useLazyLoading({
     initialItems: allResources,
-    itemsPerLoad: 6,
-    maxScrolls: 8
+    itemsPerLoad: 3,
+    maxScrolls: 20
   });
 
   const getPlatformColor = (platform: string) => {
     switch (platform) {
       case "YouTube":
-        return "bg-red-100 text-red-800";
+        return "bg-gradient-to-r from-red-100 to-red-200 text-red-800 border-red-200";
       case "Udemy":
-        return "bg-purple-100 text-purple-800";
+        return "bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800 border-purple-200";
       case "Coursera":
-        return "bg-blue-100 text-blue-800";
+        return "bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border-blue-200";
       case "Skillshare":
-        return "bg-green-100 text-green-800";
+        return "bg-gradient-to-r from-green-100 to-green-200 text-green-800 border-green-200";
+      case "LinkedIn Learning":
+        return "bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border-blue-200";
+      case "edX":
+        return "bg-gradient-to-r from-green-100 to-green-200 text-green-800 border-green-200";
+      case "School of Motion":
+        return "bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 border-orange-200";
+      case "MasterClass":
+        return "bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800 border-yellow-200";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border-gray-200";
     }
   };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "Technology":
-        return "bg-blue-100 text-blue-800";
+        return "bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200";
       case "Design":
-        return "bg-purple-100 text-purple-800";
+        return "bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200";
       case "Business":
-        return "bg-green-100 text-green-800";
+        return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200";
       case "Creative":
-        return "bg-orange-100 text-orange-800";
+        return "bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 border-orange-200";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border-gray-200";
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Header />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center mb-8">
           <Link to="/">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="hover:bg-primary/5">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Home
             </Button>
@@ -289,55 +69,72 @@ const AllTechDomains = () => {
         </div>
 
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            All Skills & Resources
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-purple-600 rounded-full mb-6">
+            <Sparkles className="h-10 w-10 text-white" />
+          </div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
+            🚀 All Skills & Resources
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive collection of curated learning resources across all domains
+            Discover amazing learning resources across all domains. Your next skill is just a click away! ✨
           </p>
+          <div className="mt-4 text-sm text-gray-500">
+            Showing {displayedItems.length} of {allResources.length} resources
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedItems.map((resource, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+            <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:scale-105 bg-white/80 backdrop-blur-sm border-0 shadow-lg">
               <CardHeader>
-                <div className="flex items-start justify-between mb-2">
+                <div className="flex items-start justify-between mb-3">
                   <div className="flex flex-wrap gap-2">
-                    <Badge className={getPlatformColor(resource.platform)} variant="secondary">
+                    <Badge className={`${getPlatformColor(resource.platform)} shadow-sm`} variant="secondary">
                       {resource.platform}
                     </Badge>
-                    <Badge className={getCategoryColor(resource.category)} variant="secondary">
+                    <Badge className={`${getCategoryColor(resource.category)} shadow-sm`} variant="secondary">
                       {resource.category}
                     </Badge>
                   </div>
                   {resource.trending && (
-                    <Badge className="bg-orange-100 text-orange-800" variant="secondary">
+                    <Badge className="bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 border-orange-200 shadow-sm animate-pulse" variant="secondary">
                       🔥 Trending
                     </Badge>
                   )}
                 </div>
-                <CardTitle className="text-lg leading-tight">{resource.title}</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-lg leading-tight hover:text-primary transition-colors">
+                  {resource.title}
+                </CardTitle>
+                <CardDescription className="text-gray-600">
                   By {resource.instructor} • {resource.duration}
                 </CardDescription>
+                {resource.description && (
+                  <p className="text-sm text-gray-500 mt-2">{resource.description}</p>
+                )}
               </CardHeader>
               <CardContent>
                 <div className="flex items-center mb-4">
                   <Star className="h-4 w-4 text-yellow-500 fill-current" />
                   <span className="ml-1 text-sm font-medium">{resource.rating}</span>
+                  <span className="ml-1 text-xs text-gray-500">rating</span>
                 </div>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {resource.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="outline" className="text-xs">
+                  {resource.tags.slice(0, 3).map((tag, tagIndex) => (
+                    <Badge key={tagIndex} variant="outline" className="text-xs bg-gray-50/80 hover:bg-gray-100 transition-colors">
                       {tag}
                     </Badge>
                   ))}
+                  {resource.tags.length > 3 && (
+                    <Badge variant="outline" className="text-xs bg-gray-50/80">
+                      +{resource.tags.length - 3}
+                    </Badge>
+                  )}
                 </div>
 
                 <Button 
                   asChild 
-                  className="w-full"
+                  className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-xl transition-all duration-300"
                   onClick={() => window.open(resource.link, '_blank')}
                 >
                   <a href={resource.link} target="_blank" rel="noopener noreferrer">
@@ -352,15 +149,22 @@ const AllTechDomains = () => {
         </div>
 
         {loading && (
-          <div className="flex justify-center items-center py-8">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <span className="ml-2 text-gray-600">Loading more resources...</span>
+          <div className="flex justify-center items-center py-12">
+            <div className="text-center">
+              <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
+              <span className="text-lg text-gray-600 font-medium">Loading more amazing resources...</span>
+              <p className="text-sm text-gray-500 mt-1">Get ready for your next learning adventure! 🎯</p>
+            </div>
           </div>
         )}
 
-        {!hasMore && scrollCount >= 8 && (
-          <div className="text-center py-8">
-            <p className="text-gray-600">You've reached the end! That's all the resources we have for now.</p>
+        {!hasMore && scrollCount >= 20 && (
+          <div className="text-center py-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full mb-4">
+              <Sparkles className="h-8 w-8 text-green-600" />
+            </div>
+            <p className="text-xl font-semibold text-gray-700 mb-2">🎉 You've explored all our resources!</p>
+            <p className="text-gray-600">Amazing job on your learning journey. Keep growing! 🚀</p>
           </div>
         )}
       </div>
