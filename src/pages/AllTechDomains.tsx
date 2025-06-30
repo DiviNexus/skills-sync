@@ -7,14 +7,33 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLazyLoading } from "@/hooks/useLazyLoading";
+import { ResourceFilters } from "@/components/ResourceFilters";
 import { allResources } from "@/data/resources";
+import { useState, useMemo } from "react";
 
 const AllTechDomains = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedExperience, setSelectedExperience] = useState("All Levels");
+
+  // Filter resources based on selected filters
+  const filteredResources = useMemo(() => {
+    return allResources.filter(resource => {
+      const categoryMatch = selectedCategory === "All" || resource.category === selectedCategory;
+      const experienceMatch = selectedExperience === "All Levels" || resource.experienceLevel === selectedExperience;
+      return categoryMatch && experienceMatch;
+    });
+  }, [selectedCategory, selectedExperience]);
+
   const { displayedItems, loading, hasMore, scrollCount } = useLazyLoading({
-    initialItems: allResources,
-    itemsPerLoad: 3,
-    maxScrolls: 20
+    initialItems: filteredResources,
+    itemsPerLoad: 6, // Increased from 3 to show more resources at once
+    maxScrolls: 30 // Increased to accommodate more resources
   });
+
+  const handleClearFilters = () => {
+    setSelectedCategory("All");
+    setSelectedExperience("All Levels");
+  };
 
   const getPlatformColor = (platform: string) => {
     switch (platform) {
@@ -49,6 +68,31 @@ const AllTechDomains = () => {
         return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200";
       case "Creative":
         return "bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 border-orange-200";
+      case "Healthcare":
+        return "bg-gradient-to-r from-pink-100 to-rose-100 text-pink-800 border-pink-200";
+      case "Finance":
+        return "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-yellow-200";
+      case "Education":
+        return "bg-gradient-to-r from-indigo-100 to-blue-100 text-indigo-800 border-indigo-200";
+      case "Science":
+        return "bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-800 border-teal-200";
+      case "Law":
+        return "bg-gradient-to-r from-slate-100 to-gray-100 text-slate-800 border-slate-200";
+      default:
+        return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border-gray-200";
+    }
+  };
+
+  const getExperienceColor = (level: string) => {
+    switch (level) {
+      case "Beginner":
+        return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200";
+      case "Intermediate":
+        return "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-yellow-200";
+      case "Advanced":
+        return "bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 border-orange-200";
+      case "Expert":
+        return "bg-gradient-to-r from-red-100 to-pink-100 text-red-800 border-red-200";
       default:
         return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border-gray-200";
     }
@@ -79,9 +123,19 @@ const AllTechDomains = () => {
             Discover amazing learning resources across all domains. Your next skill is just a click away! ✨
           </p>
           <div className="mt-4 text-sm text-gray-500">
-            Showing {displayedItems.length} of {allResources.length} resources
+            {allResources.length}+ resources from diverse domains worldwide
           </div>
         </div>
+
+        <ResourceFilters
+          selectedCategory={selectedCategory}
+          selectedExperience={selectedExperience}
+          onCategoryChange={setSelectedCategory}
+          onExperienceChange={setSelectedExperience}
+          onClearFilters={handleClearFilters}
+          totalResources={allResources.length}
+          filteredCount={filteredResources.length}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedItems.map((resource, index) => (
@@ -94,6 +148,9 @@ const AllTechDomains = () => {
                     </Badge>
                     <Badge className={`${getCategoryColor(resource.category)} shadow-sm`} variant="secondary">
                       {resource.category}
+                    </Badge>
+                    <Badge className={`${getExperienceColor(resource.experienceLevel)} shadow-sm text-xs`} variant="secondary">
+                      {resource.experienceLevel}
                     </Badge>
                   </div>
                   {resource.trending && (
@@ -158,13 +215,26 @@ const AllTechDomains = () => {
           </div>
         )}
 
-        {!hasMore && scrollCount >= 20 && (
+        {!hasMore && scrollCount >= 30 && (
           <div className="text-center py-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full mb-4">
               <Sparkles className="h-8 w-8 text-green-600" />
             </div>
-            <p className="text-xl font-semibold text-gray-700 mb-2">🎉 You've explored all our resources!</p>
-            <p className="text-gray-600">Amazing job on your learning journey. Keep growing! 🚀</p>
+            <p className="text-xl font-semibold text-gray-700 mb-2">🎉 You've explored all filtered resources!</p>
+            <p className="text-gray-600">Try adjusting your filters to discover more amazing content! 🚀</p>
+          </div>
+        )}
+
+        {filteredResources.length === 0 && (
+          <div className="text-center py-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-full mb-4">
+              <Sparkles className="h-8 w-8 text-gray-400" />
+            </div>
+            <p className="text-xl font-semibold text-gray-700 mb-2">No resources found</p>
+            <p className="text-gray-600 mb-4">Try adjusting your filters to see more resources</p>
+            <Button onClick={handleClearFilters} variant="outline">
+              Clear All Filters
+            </Button>
           </div>
         )}
       </div>

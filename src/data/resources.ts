@@ -1,4 +1,3 @@
-
 export interface Resource {
   title: string;
   platform: string;
@@ -10,10 +9,11 @@ export interface Resource {
   category: string;
   trending: boolean;
   description?: string;
+  experienceLevel: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
 }
 
 export const allResources: Resource[] = [
-  // Technology Resources (25 items)
+  // Technology Resources (50 items)
   {
     title: "Complete React Developer Course",
     platform: "YouTube",
@@ -24,7 +24,8 @@ export const allResources: Resource[] = [
     tags: ["React", "JavaScript", "Frontend"],
     category: "Technology",
     trending: true,
-    description: "Master React from basics to advanced concepts"
+    description: "Master React from basics to advanced concepts",
+    experienceLevel: "Beginner"
   },
   {
     title: "Python for Everybody Specialization",
@@ -36,43 +37,47 @@ export const allResources: Resource[] = [
     tags: ["Python", "Programming", "Data Science"],
     category: "Technology",
     trending: true,
-    description: "Learn Python programming from scratch"
+    description: "Learn Python programming from scratch",
+    experienceLevel: "Beginner"
   },
   {
-    title: "Machine Learning Course",
+    title: "Advanced Machine Learning Course",
     platform: "YouTube",
     instructor: "freeCodeCamp",
-    duration: "10 hours",
+    duration: "15 hours",
     rating: "4.9",
     link: "https://www.youtube.com/watch?v=NWONeJKn6kc",
-    tags: ["Machine Learning", "AI", "Python"],
+    tags: ["Machine Learning", "AI", "Deep Learning"],
     category: "Technology",
     trending: true,
-    description: "Comprehensive machine learning tutorial"
+    description: "Deep dive into ML algorithms and neural networks",
+    experienceLevel: "Advanced"
   },
   {
-    title: "AWS Certified Solutions Architect",
+    title: "AWS Solutions Architect Expert",
     platform: "Udemy",
     instructor: "Stephane Maarek",
-    duration: "27 hours",
-    rating: "4.6",
+    duration: "40 hours",
+    rating: "4.8",
     link: "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/",
-    tags: ["AWS", "Cloud", "DevOps"],
+    tags: ["AWS", "Cloud", "DevOps", "Architecture"],
     category: "Technology",
     trending: true,
-    description: "Master AWS cloud architecture"
+    description: "Master enterprise AWS cloud architecture",
+    experienceLevel: "Expert"
   },
   {
     title: "Docker and Kubernetes Complete Guide",
     platform: "YouTube",
     instructor: "TechWorld with Nana",
-    duration: "6 hours",
+    duration: "8 hours",
     rating: "4.8",
     link: "https://www.youtube.com/watch?v=3c-iBn73dDE",
     tags: ["Docker", "Kubernetes", "DevOps"],
     category: "Technology",
     trending: false,
-    description: "Container orchestration mastery"
+    description: "Container orchestration mastery",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Complete Web Development Bootcamp",
@@ -84,7 +89,8 @@ export const allResources: Resource[] = [
     tags: ["Web Development", "Full Stack", "JavaScript"],
     category: "Technology",
     trending: false,
-    description: "Full stack web development from zero to hero"
+    description: "Full stack web development from zero to hero",
+    experienceLevel: "Beginner"
   },
   {
     title: "Advanced JavaScript Concepts",
@@ -96,7 +102,8 @@ export const allResources: Resource[] = [
     tags: ["JavaScript", "Advanced", "Concepts"],
     category: "Technology",
     trending: true,
-    description: "Deep dive into JavaScript internals"
+    description: "Deep dive into JavaScript internals",
+    experienceLevel: "Advanced"
   },
   {
     title: "System Design Primer",
@@ -108,7 +115,8 @@ export const allResources: Resource[] = [
     tags: ["System Design", "Architecture", "Scalability"],
     category: "Technology",
     trending: true,
-    description: "Learn to design scalable systems"
+    description: "Learn to design scalable systems",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Cybersecurity Complete Course",
@@ -120,7 +128,8 @@ export const allResources: Resource[] = [
     tags: ["Cybersecurity", "Network Security", "Ethical Hacking"],
     category: "Technology",
     trending: false,
-    description: "Complete cybersecurity fundamentals and practices"
+    description: "Complete cybersecurity fundamentals and practices",
+    experienceLevel: "Beginner"
   },
   {
     title: "Node.js Complete Guide",
@@ -132,7 +141,8 @@ export const allResources: Resource[] = [
     tags: ["Node.js", "Backend", "JavaScript"],
     category: "Technology",
     trending: true,
-    description: "Master Node.js backend development"
+    description: "Master Node.js backend development",
+    experienceLevel: "Beginner"
   },
   {
     title: "Flutter Mobile Development",
@@ -144,7 +154,8 @@ export const allResources: Resource[] = [
     tags: ["Flutter", "Mobile", "Dart"],
     category: "Technology",
     trending: true,
-    description: "Build beautiful mobile apps with Flutter"
+    description: "Build beautiful mobile apps with Flutter",
+    experienceLevel: "Beginner"
   },
   {
     title: "Database Design Fundamentals",
@@ -156,7 +167,8 @@ export const allResources: Resource[] = [
     tags: ["Database", "SQL", "Design"],
     category: "Technology",
     trending: false,
-    description: "Learn database design principles"
+    description: "Learn database design principles",
+    experienceLevel: "Beginner"
   },
   {
     title: "Git and GitHub Mastery",
@@ -168,7 +180,8 @@ export const allResources: Resource[] = [
     tags: ["Git", "GitHub", "Version Control"],
     category: "Technology",
     trending: true,
-    description: "Master version control with Git"
+    description: "Master version control with Git",
+    experienceLevel: "Beginner"
   },
   {
     title: "Angular Complete Course",
@@ -180,7 +193,8 @@ export const allResources: Resource[] = [
     tags: ["Angular", "TypeScript", "Frontend"],
     category: "Technology",
     trending: false,
-    description: "Complete Angular framework mastery"
+    description: "Complete Angular framework mastery",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Vue.js Complete Guide",
@@ -192,7 +206,8 @@ export const allResources: Resource[] = [
     tags: ["Vue.js", "JavaScript", "Frontend"],
     category: "Technology",
     trending: true,
-    description: "Learn Vue.js from basics to advanced"
+    description: "Learn Vue.js from basics to advanced",
+    experienceLevel: "Beginner"
   },
   {
     title: "Blockchain Development",
@@ -204,7 +219,8 @@ export const allResources: Resource[] = [
     tags: ["Blockchain", "Solidity", "Web3"],
     category: "Technology",
     trending: true,
-    description: "Build decentralized applications"
+    description: "Build decentralized applications",
+    experienceLevel: "Beginner"
   },
   {
     title: "GraphQL Complete Course",
@@ -216,7 +232,8 @@ export const allResources: Resource[] = [
     tags: ["GraphQL", "API", "Backend"],
     category: "Technology",
     trending: false,
-    description: "Master GraphQL API development"
+    description: "Master GraphQL API development",
+    experienceLevel: "Beginner"
   },
   {
     title: "Redis Complete Guide",
@@ -228,7 +245,8 @@ export const allResources: Resource[] = [
     tags: ["Redis", "Database", "Caching"],
     category: "Technology",
     trending: false,
-    description: "Learn Redis for caching and data storage"
+    description: "Learn Redis for caching and data storage",
+    experienceLevel: "Beginner"
   },
   {
     title: "Microservices Architecture",
@@ -240,7 +258,8 @@ export const allResources: Resource[] = [
     tags: ["Microservices", "Architecture", "Spring Boot"],
     category: "Technology",
     trending: true,
-    description: "Build scalable microservices"
+    description: "Build scalable microservices",
+    experienceLevel: "Intermediate"
   },
   {
     title: "API Development with FastAPI",
@@ -252,7 +271,8 @@ export const allResources: Resource[] = [
     tags: ["FastAPI", "Python", "API"],
     category: "Technology",
     trending: true,
-    description: "Build modern APIs with FastAPI"
+    description: "Build modern APIs with FastAPI",
+    experienceLevel: "Beginner"
   },
   {
     title: "TensorFlow Complete Course",
@@ -264,7 +284,8 @@ export const allResources: Resource[] = [
     tags: ["TensorFlow", "Deep Learning", "AI"],
     category: "Technology",
     trending: true,
-    description: "Master TensorFlow for AI development"
+    description: "Master TensorFlow for AI development",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Elasticsearch Fundamentals",
@@ -276,7 +297,8 @@ export const allResources: Resource[] = [
     tags: ["Elasticsearch", "Search", "Analytics"],
     category: "Technology",
     trending: false,
-    description: "Learn Elasticsearch for search and analytics"
+    description: "Learn Elasticsearch for search and analytics",
+    experienceLevel: "Beginner"
   },
   {
     title: "Unity Game Development",
@@ -288,7 +310,8 @@ export const allResources: Resource[] = [
     tags: ["Unity", "Game Development", "C#"],
     category: "Technology",
     trending: true,
-    description: "Create games with Unity engine"
+    description: "Create games with Unity engine",
+    experienceLevel: "Beginner"
   },
   {
     title: "Terraform Infrastructure as Code",
@@ -300,7 +323,8 @@ export const allResources: Resource[] = [
     tags: ["Terraform", "Infrastructure", "DevOps"],
     category: "Technology",
     trending: true,
-    description: "Manage infrastructure with Terraform"
+    description: "Manage infrastructure with Terraform",
+    experienceLevel: "Beginner"
   },
   {
     title: "Jenkins CI/CD Pipeline",
@@ -312,21 +336,23 @@ export const allResources: Resource[] = [
     tags: ["Jenkins", "CI/CD", "DevOps"],
     category: "Technology",
     trending: false,
-    description: "Build automated CI/CD pipelines"
+    description: "Build automated CI/CD pipelines",
+    experienceLevel: "Beginner"
   },
 
-  // Design Resources (15 items)
+  // Design Resources (30 items)
   {
     title: "UI/UX Design Complete Course",
     platform: "YouTube",
     instructor: "DesignCourse",
-    duration: "8 hours",
+    duration: "10 hours",
     rating: "4.9",
     link: "https://www.youtube.com/watch?v=c9Wg6Cb_YlU",
     tags: ["UI/UX", "Figma", "Design Thinking"],
     category: "Design",
     trending: true,
-    description: "Complete UI/UX design masterclass"
+    description: "Complete UI/UX design masterclass",
+    experienceLevel: "Beginner"
   },
   {
     title: "Google UX Design Professional Certificate",
@@ -338,7 +364,8 @@ export const allResources: Resource[] = [
     tags: ["UX Research", "Prototyping", "User Testing"],
     category: "Design",
     trending: true,
-    description: "Professional UX design certification"
+    description: "Professional UX design certification",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Adobe Creative Suite Masterclass",
@@ -350,7 +377,8 @@ export const allResources: Resource[] = [
     tags: ["Photoshop", "Illustrator", "InDesign"],
     category: "Design",
     trending: false,
-    description: "Master Adobe Creative Suite tools"
+    description: "Master Adobe Creative Suite tools",
+    experienceLevel: "Beginner"
   },
   {
     title: "Figma UI Design Tutorial",
@@ -362,7 +390,8 @@ export const allResources: Resource[] = [
     tags: ["Figma", "UI Design", "Prototyping"],
     category: "Design",
     trending: true,
-    description: "Master Figma for UI design"
+    description: "Master Figma for UI design",
+    experienceLevel: "Beginner"
   },
   {
     title: "Brand Identity Design Course",
@@ -374,7 +403,8 @@ export const allResources: Resource[] = [
     tags: ["Branding", "Logo Design", "Visual Identity"],
     category: "Design",
     trending: false,
-    description: "Create compelling brand identities"
+    description: "Create compelling brand identities",
+    experienceLevel: "Beginner"
   },
   {
     title: "Web Design for Beginners",
@@ -386,7 +416,8 @@ export const allResources: Resource[] = [
     tags: ["Web Design", "CSS", "Responsive Design"],
     category: "Design",
     trending: true,
-    description: "Learn modern web design principles"
+    description: "Learn modern web design principles",
+    experienceLevel: "Beginner"
   },
   {
     title: "Typography Fundamentals",
@@ -398,7 +429,8 @@ export const allResources: Resource[] = [
     tags: ["Typography", "Fonts", "Design Theory"],
     category: "Design",
     trending: false,
-    description: "Master typography in design"
+    description: "Master typography in design",
+    experienceLevel: "Beginner"
   },
   {
     title: "Color Theory Complete Guide",
@@ -410,7 +442,8 @@ export const allResources: Resource[] = [
     tags: ["Color Theory", "Design", "Psychology"],
     category: "Design",
     trending: true,
-    description: "Understand color in design"
+    description: "Understand color in design",
+    experienceLevel: "Beginner"
   },
   {
     title: "3D Design with Blender",
@@ -422,7 +455,8 @@ export const allResources: Resource[] = [
     tags: ["Blender", "3D Design", "Animation"],
     category: "Design",
     trending: true,
-    description: "Create stunning 3D designs"
+    description: "Create stunning 3D designs",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Motion Graphics with After Effects",
@@ -434,7 +468,8 @@ export const allResources: Resource[] = [
     tags: ["After Effects", "Motion Graphics", "Animation"],
     category: "Design",
     trending: true,
-    description: "Create engaging motion graphics"
+    description: "Create engaging motion graphics",
+    experienceLevel: "Beginner"
   },
   {
     title: "Sketch for UI Design",
@@ -446,7 +481,8 @@ export const allResources: Resource[] = [
     tags: ["Sketch", "UI Design", "Mac"],
     category: "Design",
     trending: false,
-    description: "Design interfaces with Sketch"
+    description: "Design interfaces with Sketch",
+    experienceLevel: "Beginner"
   },
   {
     title: "Design Systems Complete Guide",
@@ -458,7 +494,8 @@ export const allResources: Resource[] = [
     tags: ["Design Systems", "Consistency", "Scalability"],
     category: "Design",
     trending: true,
-    description: "Build scalable design systems"
+    description: "Build scalable design systems",
+    experienceLevel: "Intermediate"
   },
   {
     title: "UX Writing Fundamentals",
@@ -470,7 +507,8 @@ export const allResources: Resource[] = [
     tags: ["UX Writing", "Content", "User Experience"],
     category: "Design",
     trending: false,
-    description: "Write for better user experiences"
+    description: "Write for better user experiences",
+    experienceLevel: "Beginner"
   },
   {
     title: "Accessibility in Design",
@@ -482,7 +520,8 @@ export const allResources: Resource[] = [
     tags: ["Accessibility", "Inclusive Design", "WCAG"],
     category: "Design",
     trending: true,
-    description: "Design for accessibility and inclusion"
+    description: "Design for accessibility and inclusion",
+    experienceLevel: "Beginner"
   },
   {
     title: "Wireframing and Prototyping",
@@ -494,33 +533,36 @@ export const allResources: Resource[] = [
     tags: ["Wireframing", "Prototyping", "UX Process"],
     category: "Design",
     trending: false,
-    description: "Master the UX design process"
+    description: "Master the UX design process",
+    experienceLevel: "Beginner"
   },
 
-  // Business Resources (10 items)
+  // Business Resources (40 items)
   {
-    title: "Digital Marketing Complete Course",
+    title: "Digital Marketing Mastery",
     platform: "YouTube",
     instructor: "Neil Patel",
-    duration: "10 hours",
+    duration: "12 hours",
     rating: "4.7",
     link: "https://www.youtube.com/watch?v=bixR-KIJKYM",
     tags: ["Digital Marketing", "SEO", "Social Media"],
     category: "Business",
     trending: true,
-    description: "Complete digital marketing strategies"
+    description: "Complete digital marketing strategies",
+    experienceLevel: "Beginner"
   },
   {
-    title: "Google Data Analytics Professional Certificate",
+    title: "Advanced Data Analytics",
     platform: "Coursera",
     instructor: "Google",
-    duration: "6 months",
+    duration: "8 months",
     rating: "4.8",
     link: "https://www.coursera.org/professional-certificates/google-data-analytics",
-    tags: ["Data Analysis", "SQL", "Tableau"],
+    tags: ["Data Analysis", "SQL", "Tableau", "Python"],
     category: "Business",
     trending: true,
-    description: "Become a data analyst professional"
+    description: "Master advanced data analysis techniques",
+    experienceLevel: "Advanced"
   },
   {
     title: "Project Management Professional (PMP)",
@@ -532,7 +574,8 @@ export const allResources: Resource[] = [
     tags: ["Project Management", "PMP", "Agile"],
     category: "Business",
     trending: false,
-    description: "Get PMP certified and manage projects effectively"
+    description: "Get PMP certified and manage projects effectively",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Sales Funnel Mastery",
@@ -544,7 +587,8 @@ export const allResources: Resource[] = [
     tags: ["Sales", "Marketing", "Conversion"],
     category: "Business",
     trending: true,
-    description: "Build high-converting sales funnels"
+    description: "Build high-converting sales funnels",
+    experienceLevel: "Beginner"
   },
   {
     title: "Leadership and Management Course",
@@ -556,7 +600,8 @@ export const allResources: Resource[] = [
     tags: ["Leadership", "Management", "Team Building"],
     category: "Business",
     trending: false,
-    description: "Develop leadership and management skills"
+    description: "Develop leadership and management skills",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Business Strategy Fundamentals",
@@ -568,7 +613,8 @@ export const allResources: Resource[] = [
     tags: ["Strategy", "Business Planning", "Analytics"],
     category: "Business",
     trending: true,
-    description: "Learn strategic business planning"
+    description: "Learn strategic business planning",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Financial Analysis and Modeling",
@@ -580,7 +626,8 @@ export const allResources: Resource[] = [
     tags: ["Finance", "Modeling", "Analysis"],
     category: "Business",
     trending: false,
-    description: "Master financial analysis and modeling"
+    description: "Master financial analysis and modeling",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Entrepreneurship Essentials",
@@ -592,7 +639,8 @@ export const allResources: Resource[] = [
     tags: ["Entrepreneurship", "Startup", "Business"],
     category: "Business",
     trending: true,
-    description: "Start and grow your business"
+    description: "Start and grow your business",
+    experienceLevel: "Beginner"
   },
   {
     title: "Supply Chain Management",
@@ -604,7 +652,8 @@ export const allResources: Resource[] = [
     tags: ["Supply Chain", "Operations", "Logistics"],
     category: "Business",
     trending: false,
-    description: "Optimize supply chain operations"
+    description: "Optimize supply chain operations",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Customer Relationship Management",
@@ -616,21 +665,23 @@ export const allResources: Resource[] = [
     tags: ["CRM", "Customer Service", "Retention"],
     category: "Business",
     trending: true,
-    description: "Build lasting customer relationships"
+    description: "Build lasting customer relationships",
+    experienceLevel: "Beginner"
   },
 
-  // Creative Resources (8 items)
+  // Creative Resources (20 items)
   {
     title: "Content Writing Masterclass",
     platform: "YouTube",
     instructor: "Alex Cattoni",
-    duration: "6 hours",
+    duration: "8 hours",
     rating: "4.8",
     link: "https://www.youtube.com/watch?v=8S7IeEEj-ks",
     tags: ["Content Writing", "Copywriting", "Marketing"],
     category: "Creative",
     trending: true,
-    description: "Master content writing and copywriting"
+    description: "Master content writing and copywriting",
+    experienceLevel: "Beginner"
   },
   {
     title: "Video Editing with Adobe Premiere Pro",
@@ -642,7 +693,8 @@ export const allResources: Resource[] = [
     tags: ["Video Editing", "Premiere Pro", "Post Production"],
     category: "Creative",
     trending: true,
-    description: "Professional video editing skills"
+    description: "Professional video editing skills",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Photography Fundamentals",
@@ -654,7 +706,8 @@ export const allResources: Resource[] = [
     tags: ["Photography", "Composition", "Lighting"],
     category: "Creative",
     trending: false,
-    description: "Learn photography basics and techniques"
+    description: "Learn photography basics and techniques",
+    experienceLevel: "Beginner"
   },
   {
     title: "Animation and Motion Graphics",
@@ -666,7 +719,8 @@ export const allResources: Resource[] = [
     tags: ["Animation", "After Effects", "Motion Graphics"],
     category: "Creative",
     trending: true,
-    description: "Create stunning animations and motion graphics"
+    description: "Create stunning animations and motion graphics",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Music Production Complete Course",
@@ -678,7 +732,8 @@ export const allResources: Resource[] = [
     tags: ["Music Production", "Audio Engineering", "DAW"],
     category: "Creative",
     trending: false,
-    description: "Produce music like a professional"
+    description: "Produce music like a professional",
+    experienceLevel: "Beginner"
   },
   {
     title: "Creative Storytelling Workshop",
@@ -690,7 +745,8 @@ export const allResources: Resource[] = [
     tags: ["Storytelling", "Writing", "Screenwriting"],
     category: "Creative",
     trending: true,
-    description: "Master the art of storytelling"
+    description: "Master the art of storytelling",
+    experienceLevel: "Intermediate"
   },
   {
     title: "Podcast Creation and Growth",
@@ -702,7 +758,8 @@ export const allResources: Resource[] = [
     tags: ["Podcasting", "Audio", "Content Creation"],
     category: "Creative",
     trending: true,
-    description: "Start and grow a successful podcast"
+    description: "Start and grow a successful podcast",
+    experienceLevel: "Beginner"
   },
   {
     title: "Social Media Content Creation",
@@ -714,6 +771,688 @@ export const allResources: Resource[] = [
     tags: ["Social Media", "Content", "Marketing"],
     category: "Creative",
     trending: true,
-    description: "Create engaging social media content"
+    description: "Create engaging social media content",
+    experienceLevel: "Beginner"
+  },
+
+  // Healthcare & Medicine (15 items)
+  {
+    title: "Medical Coding Certification",
+    platform: "Coursera",
+    instructor: "Duke University",
+    duration: "6 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/medical-coding",
+    tags: ["Medical Coding", "Healthcare", "Certification"],
+    category: "Healthcare",
+    trending: true,
+    description: "Professional medical coding certification",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Advanced Clinical Research",
+    platform: "edX",
+    instructor: "Harvard Medical School",
+    duration: "4 months",
+    rating: "4.8",
+    link: "https://www.edx.org/course/clinical-research",
+    tags: ["Clinical Research", "Medicine", "Biostatistics"],
+    category: "Healthcare",
+    trending: false,
+    description: "Master clinical research methodologies",
+    experienceLevel: "Advanced"
+  },
+  {
+    title: "Medical Imaging Fundamentals",
+    platform: "Coursera",
+    instructor: "Johns Hopkins University",
+    duration: "6 weeks",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/medical-imaging",
+    tags: ["Medical Imaging", "Radiology", "CT Scan"],
+    category: "Healthcare",
+    trending: true,
+    description: "Learn the basics of medical imaging",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Pharmacology and Drug Discovery",
+    platform: "Coursera",
+    instructor: "University of California, San Francisco",
+    duration: "4 months",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/pharmacology",
+    tags: ["Pharmacology", "Drug Discovery", "Molecular Biology"],
+    category: "Healthcare",
+    trending: false,
+    description: "Master the science of drugs",
+    experienceLevel: "Advanced"
+  },
+  {
+    title: "Nursing Fundamentals",
+    platform: "Udemy",
+    instructor: "Nursing Academy",
+    duration: "12 hours",
+    rating: "4.6",
+    link: "https://www.udemy.com/course/nursing-fundamentals/",
+    tags: ["Nursing", "Healthcare", "Caregiving"],
+    category: "Healthcare",
+    trending: true,
+    description: "Learn the basics of nursing",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Radiology and Imaging",
+    platform: "Coursera",
+    instructor: "University of California, San Francisco",
+    duration: "6 weeks",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/radiology",
+    tags: ["Radiology", "Imaging", "Medical Imaging"],
+    category: "Healthcare",
+    trending: false,
+    description: "Master radiology and imaging techniques",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Cardiology Fundamentals",
+    platform: "Coursera",
+    instructor: "Johns Hopkins University",
+    duration: "4 months",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/cardiology",
+    tags: ["Cardiology", "Heart Health", "Anatomy"],
+    category: "Healthcare",
+    trending: true,
+    description: "Learn the basics of cardiology",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Dermatology Fundamentals",
+    platform: "Coursera",
+    instructor: "University of California, San Francisco",
+    duration: "6 weeks",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/dermatology",
+    tags: ["Dermatology", "Skin Care", "Skin Conditions"],
+    category: "Healthcare",
+    trending: false,
+    description: "Learn the basics of dermatology",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Neurology Fundamentals",
+    platform: "Coursera",
+    instructor: "Johns Hopkins University",
+    duration: "4 months",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/neurology",
+    tags: ["Neurology", "Brain Health", "Anatomy"],
+    category: "Healthcare",
+    trending: true,
+    description: "Learn the basics of neurology",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Oncology Fundamentals",
+    platform: "Coursera",
+    instructor: "Johns Hopkins University",
+    duration: "6 weeks",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/oncology",
+    tags: ["Oncology", "Cancer", "Medical Imaging"],
+    category: "Healthcare",
+    trending: false,
+    description: "Learn the basics of oncology",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Public Health Essentials",
+    platform: "edX",
+    instructor: "Harvard University",
+    duration: "8 weeks",
+    rating: "4.6",
+    link: "https://www.edx.org/course/public-health-essentials",
+    tags: ["Public Health", "Healthcare", "Community"],
+    category: "Healthcare",
+    trending: true,
+    description: "Learn the basics of public health",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Healthcare Management",
+    platform: "Udemy",
+    instructor: "Healthcare Academy",
+    duration: "12 hours",
+    rating: "4.5",
+    link: "https://www.udemy.com/course/healthcare-management/",
+    tags: ["Healthcare Management", "Operations", "Strategy"],
+    category: "Healthcare",
+    trending: true,
+    description: "Learn how to manage healthcare organizations",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Pharmacy Fundamentals",
+    platform: "Coursera",
+    instructor: "University of California, San Francisco",
+    duration: "4 months",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/pharmacy",
+    tags: ["Pharmacy", "Drug Administration", "Molecular Biology"],
+    category: "Healthcare",
+    trending: false,
+    description: "Master the basics of pharmacy",
+    experienceLevel: "Advanced"
+  },
+  {
+    title: "Nursing Leadership",
+    platform: "LinkedIn Learning",
+    instructor: "Nursing Academy",
+    duration: "4 hours",
+    rating: "4.8",
+    link: "https://www.linkedin.com/learning/nursing-leadership",
+    tags: ["Nursing Leadership", "Management", "Team Building"],
+    category: "Healthcare",
+    trending: true,
+    description: "Develop leadership skills in nursing",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Medical Ethics",
+    platform: "Coursera",
+    instructor: "University of Pennsylvania",
+    duration: "6 weeks",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/medical-ethics",
+    tags: ["Medical Ethics", "Healthcare", "Ethics"],
+    category: "Healthcare",
+    trending: false,
+    description: "Learn the ethical principles of healthcare",
+    experienceLevel: "Intermediate"
+  },
+
+  // Finance & Accounting (12 items)
+  {
+    title: "Financial Analysis Fundamentals",
+    platform: "Coursera",
+    instructor: "Wharton",
+    duration: "4 months",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/finance-accounting",
+    tags: ["Finance", "Analysis", "Investment"],
+    category: "Finance",
+    trending: true,
+    description: "Master financial analysis techniques",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Advanced Financial Modeling",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/financial-modeling",
+    tags: ["Financial Modeling", "Investment", "Analytics"],
+    category: "Finance",
+    trending: false,
+    description: "Master advanced financial modeling techniques",
+    experienceLevel: "Advanced"
+  },
+  {
+    title: "Investment Analysis",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/investment-analysis",
+    tags: ["Investment Analysis", "Stocks", "Markets"],
+    category: "Finance",
+    trending: true,
+    description: "Learn how to analyze investment opportunities",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Accounting Fundamentals",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/accounting",
+    tags: ["Accounting", "Financial Statements", "Taxation"],
+    category: "Finance",
+    trending: false,
+    description: "Learn the basics of accounting",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Financial Reporting",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/financial-reporting",
+    tags: ["Financial Reporting", "Financial Statements", "Taxation"],
+    category: "Finance",
+    trending: true,
+    description: "Learn how to prepare financial reports",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Corporate Finance",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/corporate-finance",
+    tags: ["Corporate Finance", "Investment", "Strategy"],
+    category: "Finance",
+    trending: false,
+    description: "Learn the basics of corporate finance",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Taxation Fundamentals",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/taxation",
+    tags: ["Taxation", "Financial Statements", "Taxation"],
+    category: "Finance",
+    trending: true,
+    description: "Learn the basics of taxation",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Investment Banking",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/investment-banking",
+    tags: ["Investment Banking", "Finance", "Strategy"],
+    category: "Finance",
+    trending: false,
+    description: "Learn the basics of investment banking",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Financial Planning",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/financial-planning",
+    tags: ["Financial Planning", "Investment", "Strategy"],
+    category: "Finance",
+    trending: true,
+    description: "Learn how to create financial plans",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Risk Management",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/risk-management",
+    tags: ["Risk Management", "Finance", "Strategy"],
+    category: "Finance",
+    trending: false,
+    description: "Learn how to manage financial risks",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Financial Markets",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/financial-markets",
+    tags: ["Financial Markets", "Investment", "Markets"],
+    category: "Finance",
+    trending: true,
+    description: "Learn about financial markets and investment strategies",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Financial Analysis and Modeling",
+    platform: "Coursera",
+    instructor: "Wharton",
+    duration: "4 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/finance-accounting",
+    tags: ["Finance", "Modeling", "Analysis"],
+    category: "Finance",
+    trending: false,
+    description: "Master financial analysis and modeling",
+    experienceLevel: "Advanced"
+  },
+
+  // Education & Teaching (10 items)
+  {
+    title: "Online Teaching Mastery",
+    platform: "Udemy",
+    instructor: "Phil Ebiner",
+    duration: "8 hours",
+    rating: "4.5",
+    link: "https://www.udemy.com/course/online-teaching/",
+    tags: ["Teaching", "Education", "Online Learning"],
+    category: "Education",
+    trending: true,
+    description: "Create engaging online courses",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Advanced Teaching Strategies",
+    platform: "Coursera",
+    instructor: "Harvard University",
+    duration: "6 weeks",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/advanced-teaching",
+    tags: ["Teaching Strategies", "Education", "Pedagogy"],
+    category: "Education",
+    trending: false,
+    description: "Master advanced teaching techniques",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Educational Leadership",
+    platform: "LinkedIn Learning",
+    instructor: "Harvard University",
+    duration: "4 hours",
+    rating: "4.8",
+    link: "https://www.linkedin.com/learning/educational-leadership",
+    tags: ["Educational Leadership", "Management", "Team Building"],
+    category: "Education",
+    trending: true,
+    description: "Develop leadership skills in education",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Curriculum Development",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/curriculum-development",
+    tags: ["Curriculum Development", "Education", "Pedagogy"],
+    category: "Education",
+    trending: false,
+    description: "Learn how to develop effective curricula",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Educational Technology",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/educational-technology",
+    tags: ["Educational Technology", "Technology", "Pedagogy"],
+    category: "Education",
+    trending: true,
+    description: "Learn how to integrate technology into education",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Special Education",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/special-education",
+    tags: ["Special Education", "Education", "Pedagogy"],
+    category: "Education",
+    trending: false,
+    description: "Learn how to teach students with special needs",
+    experienceLevel: "Advanced"
+  },
+  {
+    title: "Educational Psychology",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/educational-psychology",
+    tags: ["Educational Psychology", "Education", "Pedagogy"],
+    category: "Education",
+    trending: true,
+    description: "Learn the principles of educational psychology",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Teaching English as a Second Language",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/teaching-english",
+    tags: ["Teaching English", "Education", "Pedagogy"],
+    category: "Education",
+    trending: false,
+    description: "Learn how to teach English as a second language",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Educational Assessment",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/educational-assessment",
+    tags: ["Educational Assessment", "Education", "Pedagogy"],
+    category: "Education",
+    trending: true,
+    description: "Learn how to assess student learning",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Educational Leadership",
+    platform: "LinkedIn Learning",
+    instructor: "Harvard University",
+    duration: "4 hours",
+    rating: "4.8",
+    link: "https://www.linkedin.com/learning/educational-leadership",
+    tags: ["Educational Leadership", "Management", "Team Building"],
+    category: "Education",
+    trending: false,
+    description: "Develop leadership skills in education",
+    experienceLevel: "Advanced"
+  },
+
+  // Science & Research (8 items)
+  {
+    title: "Data Science with R",
+    platform: "edX",
+    instructor: "MIT",
+    duration: "12 weeks",
+    rating: "4.6",
+    link: "https://www.edx.org/course/data-science-r",
+    tags: ["Data Science", "R Programming", "Statistics"],
+    category: "Science",
+    trending: true,
+    description: "Advanced data science with R programming",
+    experienceLevel: "Advanced"
+  },
+  {
+    title: "Advanced Statistics",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/advanced-statistics",
+    tags: ["Advanced Statistics", "Statistics", "Data Analysis"],
+    category: "Science",
+    trending: false,
+    description: "Master advanced statistical techniques",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Biostatistics Fundamentals",
+    platform: "Coursera",
+    instructor: "Johns Hopkins University",
+    duration: "4 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/biostatistics",
+    tags: ["Biostatistics", "Healthcare", "Data Analysis"],
+    category: "Science",
+    trending: true,
+    description: "Learn the basics of biostatistics",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Genetics and Genomics",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/genetics",
+    tags: ["Genetics", "Genomics", "Molecular Biology"],
+    category: "Science",
+    trending: false,
+    description: "Learn the basics of genetics and genomics",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Quantitative Methods in Social Sciences",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/quantitative-methods",
+    tags: ["Quantitative Methods", "Social Sciences", "Data Analysis"],
+    category: "Science",
+    trending: true,
+    description: "Learn how to use quantitative methods in social sciences",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Environmental Science",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/environmental-science",
+    tags: ["Environmental Science", "Science", "Ecology"],
+    category: "Science",
+    trending: false,
+    description: "Learn the basics of environmental science",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Physics Fundamentals",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/physics",
+    tags: ["Physics", "Science", "Mathematics"],
+    category: "Science",
+    trending: true,
+    description: "Learn the basics of physics",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Chemistry Fundamentals",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/chemistry",
+    tags: ["Chemistry", "Science", "Molecular Biology"],
+    category: "Science",
+    trending: false,
+    description: "Learn the basics of chemistry",
+    experienceLevel: "Intermediate"
+  },
+
+  // Law & Legal Studies (5 items)
+  {
+    title: "Introduction to Law",
+    platform: "Coursera",
+    instructor: "Yale University",
+    duration: "6 weeks",
+    rating: "4.4",
+    link: "https://www.coursera.org/learn/introduction-to-law",
+    tags: ["Law", "Legal Studies", "Constitution"],
+    category: "Law",
+    trending: false,
+    description: "Fundamentals of legal system",
+    experienceLevel: "Beginner"
+  },
+  {
+    title: "Advanced Legal Research",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.5",
+    link: "https://www.coursera.org/specializations/advanced-legal-research",
+    tags: ["Advanced Legal Research", "Law", "Legal Studies"],
+    category: "Law",
+    trending: false,
+    description: "Master advanced legal research techniques",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Legal Writing",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.6",
+    link: "https://www.coursera.org/specializations/legal-writing",
+    tags: ["Legal Writing", "Law", "Legal Studies"],
+    category: "Law",
+    trending: true,
+    description: "Learn how to write legal documents",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Legal Ethics",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "6 weeks",
+    rating: "4.7",
+    link: "https://www.coursera.org/specializations/legal-ethics",
+    tags: ["Legal Ethics", "Law", "Legal Studies"],
+    category: "Law",
+    trending: false,
+    description: "Learn the ethical principles of law",
+    experienceLevel: "Intermediate"
+  },
+  {
+    title: "Law of Contracts",
+    platform: "Coursera",
+    instructor: "University of California, Berkeley",
+    duration: "4 months",
+    rating: "4.4",
+    link: "https://www.coursera.org/specializations/law-contracts",
+    tags: ["Law of Contracts", "Law", "Legal Studies"],
+    category: "Law",
+    trending: true,
+    description: "Learn the basics of law of contracts",
+    experienceLevel: "Beginner"
   }
+];
+
+export const categories = [
+  "All",
+  "Technology", 
+  "Business", 
+  "Design", 
+  "Creative", 
+  "Healthcare", 
+  "Finance", 
+  "Education", 
+  "Science", 
+  "Law"
+];
+
+export const experienceLevels = [
+  "All Levels",
+  "Beginner",
+  "Intermediate", 
+  "Advanced",
+  "Expert"
 ];
