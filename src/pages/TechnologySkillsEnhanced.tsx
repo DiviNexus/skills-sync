@@ -6,40 +6,17 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLazyLoading } from "@/hooks/useLazyLoading";
-import { ResourceFilters } from "@/components/ResourceFilters";
 import { allResources } from "@/data/resources";
-import { useState, useMemo } from "react";
 
-const AllTechDomains = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedExperience, setSelectedExperience] = useState("All Levels");
-  const [selectedDomain, setSelectedDomain] = useState("All Domains");
-  const [selectedYearsExp, setSelectedYearsExp] = useState("All Experience Levels");
+const TechnologySkillsEnhanced = () => {
+  // Filter for technology resources
+  const techResources = allResources.filter(resource => resource.category === "Technology");
 
-  // Enhanced filter logic
-  const filteredResources = useMemo(() => {
-    return allResources.filter(resource => {
-      const categoryMatch = selectedCategory === "All" || resource.category === selectedCategory;
-      const experienceMatch = selectedExperience === "All Levels" || resource.experienceLevel === selectedExperience;
-      const domainMatch = selectedDomain === "All Domains" || resource.specificDomain === selectedDomain;
-      const yearsMatch = selectedYearsExp === "All Experience Levels" || resource.yearsOfExperience === selectedYearsExp;
-      
-      return categoryMatch && experienceMatch && domainMatch && yearsMatch;
-    });
-  }, [selectedCategory, selectedExperience, selectedDomain, selectedYearsExp]);
-
-  const { displayedItems, loading, hasMore, scrollCount } = useLazyLoading({
-    initialItems: filteredResources,
-    itemsPerLoad: 6,
-    maxScrolls: 50
+  const { displayedItems, loading, hasMore } = useLazyLoading({
+    initialItems: techResources,
+    itemsPerLoad: 3, // Load 3 at a time as requested
+    maxScrolls: 15
   });
-
-  const handleClearFilters = () => {
-    setSelectedCategory("All");
-    setSelectedExperience("All Levels");
-    setSelectedDomain("All Domains");
-    setSelectedYearsExp("All Experience Levels");
-  };
 
   const getPlatformColor = (platform: string) => {
     switch (platform) {
@@ -74,31 +51,6 @@ const AllTechDomains = () => {
         return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200";
       case "Creative":
         return "bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 border-orange-200";
-      case "Healthcare":
-        return "bg-gradient-to-r from-pink-100 to-rose-100 text-pink-800 border-pink-200";
-      case "Finance":
-        return "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-yellow-200";
-      case "Education":
-        return "bg-gradient-to-r from-indigo-100 to-blue-100 text-indigo-800 border-indigo-200";
-      case "Science":
-        return "bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-800 border-teal-200";
-      case "Law":
-        return "bg-gradient-to-r from-slate-100 to-gray-100 text-slate-800 border-slate-200";
-      default:
-        return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border-gray-200";
-    }
-  };
-
-  const getExperienceColor = (level: string) => {
-    switch (level) {
-      case "Beginner":
-        return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200";
-      case "Intermediate":
-        return "bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-yellow-200";
-      case "Advanced":
-        return "bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 border-orange-200";
-      case "Expert":
-        return "bg-gradient-to-r from-red-100 to-pink-100 text-red-800 border-red-200";
       default:
         return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border-gray-200";
     }
@@ -119,33 +71,19 @@ const AllTechDomains = () => {
         </div>
 
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-purple-600 rounded-full mb-6">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full mb-6">
             <Sparkles className="h-10 w-10 text-white" />
           </div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
-            🚀 All Skills & Resources
+            💻 Technology Skills & Resources
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover amazing learning resources across all domains. Your next skill is just a click away! ✨
+            Master cutting-edge technologies with our curated collection of courses and tutorials! 🚀
           </p>
           <div className="mt-4 text-sm text-gray-500">
-            {allResources.length}+ resources from diverse domains worldwide
+            {techResources.length}+ technology resources available
           </div>
         </div>
-
-        <ResourceFilters
-          selectedCategory={selectedCategory}
-          selectedExperience={selectedExperience}
-          selectedDomain={selectedDomain}
-          selectedYearsExp={selectedYearsExp}
-          onCategoryChange={setSelectedCategory}
-          onExperienceChange={setSelectedExperience}
-          onDomainChange={setSelectedDomain}
-          onYearsExpChange={setSelectedYearsExp}
-          onClearFilters={handleClearFilters}
-          totalResources={allResources.length}
-          filteredCount={filteredResources.length}
-        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedItems.map((resource, index) => (
@@ -158,9 +96,6 @@ const AllTechDomains = () => {
                     </Badge>
                     <Badge className={`${getCategoryColor(resource.category)} shadow-sm`} variant="secondary">
                       {resource.category}
-                    </Badge>
-                    <Badge className={`${getExperienceColor(resource.experienceLevel)} shadow-sm text-xs`} variant="secondary">
-                      {resource.experienceLevel}
                     </Badge>
                   </div>
                   {resource.trending && (
@@ -175,9 +110,6 @@ const AllTechDomains = () => {
                 <CardDescription className="text-gray-600">
                   By {resource.instructor} • {resource.duration}
                 </CardDescription>
-                {resource.description && (
-                  <p className="text-sm text-gray-500 mt-2">{resource.description}</p>
-                )}
               </CardHeader>
               <CardContent>
                 <div className="flex items-center mb-4">
@@ -186,23 +118,9 @@ const AllTechDomains = () => {
                   <span className="ml-1 text-xs text-gray-500">rating</span>
                 </div>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {resource.tags.slice(0, 3).map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="outline" className="text-xs bg-gray-50/80 hover:bg-gray-100 transition-colors">
-                      {tag}
-                    </Badge>
-                  ))}
-                  {resource.tags.length > 3 && (
-                    <Badge variant="outline" className="text-xs bg-gray-50/80">
-                      +{resource.tags.length - 3}
-                    </Badge>
-                  )}
-                </div>
-
                 <Button 
                   asChild 
-                  className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => window.open(resource.link, '_blank')}
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-500/90 hover:to-cyan-600/90 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <a href={resource.link} target="_blank" rel="noopener noreferrer">
                     <Play className="h-4 w-4 mr-2" />
@@ -219,32 +137,19 @@ const AllTechDomains = () => {
           <div className="flex justify-center items-center py-12">
             <div className="text-center">
               <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
-              <span className="text-lg text-gray-600 font-medium">Loading more amazing resources...</span>
-              <p className="text-sm text-gray-500 mt-1">Get ready for your next learning adventure! 🎯</p>
+              <span className="text-lg text-gray-600 font-medium">Loading more tech resources...</span>
+              <p className="text-sm text-gray-500 mt-1">Preparing your next learning adventure! 🎯</p>
             </div>
           </div>
         )}
 
-        {!hasMore && scrollCount >= 50 && (
+        {!hasMore && displayedItems.length > 0 && (
           <div className="text-center py-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full mb-4">
               <Sparkles className="h-8 w-8 text-green-600" />
             </div>
-            <p className="text-xl font-semibold text-gray-700 mb-2">🎉 You've explored all filtered resources!</p>
-            <p className="text-gray-600">Try adjusting your filters to discover more amazing content! 🚀</p>
-          </div>
-        )}
-
-        {filteredResources.length === 0 && (
-          <div className="text-center py-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-full mb-4">
-              <Sparkles className="h-8 w-8 text-gray-400" />
-            </div>
-            <p className="text-xl font-semibold text-gray-700 mb-2">No resources found</p>
-            <p className="text-gray-600 mb-4">Try adjusting your filters to see more resources</p>
-            <Button onClick={handleClearFilters} variant="outline">
-              Clear All Filters
-            </Button>
+            <p className="text-xl font-semibold text-gray-700 mb-2">🎉 You've explored all technology resources!</p>
+            <p className="text-gray-600">Ready to dive into another domain? 🚀</p>
           </div>
         )}
       </div>
@@ -254,4 +159,4 @@ const AllTechDomains = () => {
   );
 };
 
-export default AllTechDomains;
+export default TechnologySkillsEnhanced;

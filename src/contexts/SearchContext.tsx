@@ -34,39 +34,75 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
 
     setIsSearching(true);
     
-    // Simulate search delay of 1 second for better UX
     setTimeout(() => {
       const queryLower = query.toLowerCase();
-      const results = allResources.filter(resource => 
-        resource.title.toLowerCase().includes(queryLower) ||
-        resource.tags.some(tag => tag.toLowerCase().includes(queryLower)) ||
-        resource.category.toLowerCase().includes(queryLower) ||
-        resource.instructor.toLowerCase().includes(queryLower) ||
-        resource.platform.toLowerCase().includes(queryLower) ||
-        (resource.description && resource.description.toLowerCase().includes(queryLower))
-      );
       
-      // Sort by relevance - exact matches first, then partial matches
+      // Enhanced search algorithm for better matching
+      const results = allResources.filter(resource => {
+        const titleMatch = resource.title.toLowerCase().includes(queryLower);
+        const tagMatch = resource.tags.some(tag => tag.toLowerCase().includes(queryLower));
+        const categoryMatch = resource.category.toLowerCase().includes(queryLower);
+        const instructorMatch = resource.instructor.toLowerCase().includes(queryLower);
+        const platformMatch = resource.platform.toLowerCase().includes(queryLower);
+        const descriptionMatch = resource.description && resource.description.toLowerCase().includes(queryLower);
+        const domainMatch = resource.specificDomain.toLowerCase().includes(queryLower);
+        
+        // Special handling for common course keywords
+        const commonKeywords = ['html', 'css', 'javascript', 'python', 'react', 'node', 'database', 'dbms', 'sql', 'java', 'c++', 'php'];
+        const keywordMatch = commonKeywords.some(keyword => {
+          if (queryLower.includes(keyword)) {
+            return resource.tags.some(tag => tag.toLowerCase().includes(keyword)) ||
+                   resource.title.toLowerCase().includes(keyword);
+          }
+          return false;
+        });
+        
+        return titleMatch || tagMatch || categoryMatch || instructorMatch || 
+               platformMatch || descriptionMatch || domainMatch || keywordMatch;
+      });
+      
+      // Enhanced sorting by relevance
       const sortedResults = results.sort((a, b) => {
         const aTitle = a.title.toLowerCase();
         const bTitle = b.title.toLowerCase();
-        const aExact = aTitle.includes(queryLower);
-        const bExact = bTitle.includes(queryLower);
+        const aTags = a.tags.join(' ').toLowerCase();
+        const bTags = b.tags.join(' ').toLowerCase();
         
-        if (aExact && !bExact) return -1;
-        if (!aExact && bExact) return 1;
+        // Exact title matches first
+        const aExactTitle = aTitle === queryLower;
+        const bExactTitle = bTitle === queryLower;
+        if (aExactTitle && !bExactTitle) return -1;
+        if (!aExactTitle && bExactTitle) return 1;
         
-        // If both or neither are exact matches, sort by trending first
+        // Title starts with query
+        const aTitleStarts = aTitle.startsWith(queryLower);
+        const bTitleStarts = bTitle.startsWith(queryLower);
+        if (aTitleStarts && !bTitleStarts) return -1;
+        if (!aTitleStarts && bTitleStarts) return 1;
+        
+        // Tag exact matches
+        const aTagExact = a.tags.some(tag => tag.toLowerCase() === queryLower);
+        const bTagExact = b.tags.some(tag => tag.toLowerCase() === queryLower);
+        if (aTagExact && !bTagExact) return -1;
+        if (!aTagExact && bTagExact) return 1;
+        
+        // Title contains query
+        const aTitleContains = aTitle.includes(queryLower);
+        const bTitleContains = bTitle.includes(queryLower);
+        if (aTitleContains && !bTitleContains) return -1;
+        if (!aTitleContains && bTitleContains) return 1;
+        
+        // Trending resources
         if (a.trending && !b.trending) return -1;
         if (!a.trending && b.trending) return 1;
         
-        // Then by rating
+        // Rating
         return parseFloat(b.rating) - parseFloat(a.rating);
       });
       
       setSearchResults(sortedResults);
       setIsSearching(false);
-    }, 500); // Reduced delay for better real-time feel
+    }, 300); // Faster response time
   };
 
   const clearSearch = () => {
