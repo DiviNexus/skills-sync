@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,7 @@ const TechnologySkillsEnhanced = () => {
 
   const { displayedItems, loading, hasMore } = useLazyLoading({
     initialItems: techResources,
-    itemsPerLoad: 3, // Load 3 at a time as requested
+    itemsPerLoad: 3,
     maxScrolls: 15
   });
 

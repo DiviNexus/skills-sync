@@ -47,26 +47,40 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
         const descriptionMatch = resource.description && resource.description.toLowerCase().includes(queryLower);
         const domainMatch = resource.specificDomain.toLowerCase().includes(queryLower);
         
-        // Special handling for common course keywords
-        const commonKeywords = ['html', 'css', 'javascript', 'python', 'react', 'node', 'database', 'dbms', 'sql', 'java', 'c++', 'php'];
+        // Enhanced keyword matching for simple course names
+        const commonKeywords = [
+          'html', 'css', 'javascript', 'js', 'python', 'react', 'reactjs', 'node', 'nodejs',
+          'database', 'dbms', 'sql', 'mysql', 'java', 'c++', 'cpp', 'php', 'angular',
+          'vue', 'vuejs', 'bootstrap', 'jquery', 'mongodb', 'express', 'django', 'flask',
+          'git', 'github', 'docker', 'kubernetes', 'aws', 'azure', 'machine learning', 'ml',
+          'artificial intelligence', 'ai', 'data science', 'cybersecurity', 'blockchain',
+          'web development', 'frontend', 'backend', 'fullstack', 'mobile', 'android', 'ios',
+          'swift', 'kotlin', 'flutter', 'dart', 'unity', 'c#', 'csharp', 'typescript', 'ts'
+        ];
+        
         const keywordMatch = commonKeywords.some(keyword => {
-          if (queryLower.includes(keyword)) {
+          if (queryLower.includes(keyword) || keyword.includes(queryLower)) {
             return resource.tags.some(tag => tag.toLowerCase().includes(keyword)) ||
-                   resource.title.toLowerCase().includes(keyword);
+                   resource.title.toLowerCase().includes(keyword) ||
+                   resource.description?.toLowerCase().includes(keyword);
           }
           return false;
         });
         
+        // Partial word matching for short queries
+        const partialMatch = queryLower.length >= 2 && (
+          resource.title.toLowerCase().includes(queryLower) ||
+          resource.tags.some(tag => tag.toLowerCase().includes(queryLower))
+        );
+        
         return titleMatch || tagMatch || categoryMatch || instructorMatch || 
-               platformMatch || descriptionMatch || domainMatch || keywordMatch;
+               platformMatch || descriptionMatch || domainMatch || keywordMatch || partialMatch;
       });
       
       // Enhanced sorting by relevance
       const sortedResults = results.sort((a, b) => {
         const aTitle = a.title.toLowerCase();
         const bTitle = b.title.toLowerCase();
-        const aTags = a.tags.join(' ').toLowerCase();
-        const bTags = b.tags.join(' ').toLowerCase();
         
         // Exact title matches first
         const aExactTitle = aTitle === queryLower;
@@ -102,7 +116,7 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
       
       setSearchResults(sortedResults);
       setIsSearching(false);
-    }, 300); // Faster response time
+    }, 200); // Even faster response time
   };
 
   const clearSearch = () => {
